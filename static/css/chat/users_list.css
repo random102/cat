@@ -1,0 +1,11 @@
+.message{
+    margin: 10px;
+}
+
+.text-left {
+    border: 1px solid orange;
+}
+
+.text-right {
+    border: 1px solid grey;
+}

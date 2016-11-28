@@ -1,0 +1,35 @@
+{% extends 'cat/base.html' %}
+
+{% block title %} Message Users {% endblock %}
+
+{% block main %}
+<div class="container-fluid">
+    <div class="page-header text-center">
+        <h1>Chat Window</h1>
+    </div>
+
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+        <ul class="nav nav-stacked nav-pills" id="user-list">
+            {% for user in users %}
+                <li role="presentation">
+                    <a href="{% url 'chat_users' user.id %}" data-user-id="{{ user.id }}">{{ user.first_name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div id="message-area" class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+
+    </div>
+</div>
+{% endblock %}
+
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/chat/users_list.css' %}">
+{% endblock %}
+
+
+{% block js %}
+    <script type="text/javascript" src="{% static 'js/chat/users_list.js' %}" async></script>
+{% endblock %}

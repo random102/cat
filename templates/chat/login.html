@@ -1,0 +1,26 @@
+{% extends 'cat/base.html' %}
+
+{% block title %} Login {% endblock %}
+
+{% block main %}
+    <div class="container" xmlns="http://www.w3.org/1999/html">
+        <div class="text-center">
+            <h1>Welcome to CAT</h1>
+            <p>
+                {% if user and not user.is_anonymous %}
+                <a>Hello {{ user.get_full_name|default:user.username }}!</a>
+                <a href="{% url 'chat_users_list' %}">
+                    <button class="btn btn-primary">Lets Chat</button>
+                </a>
+                {% else %}
+                <a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">
+                    <button class="btn btn-primary">Login with Facebook</button>
+                </a>
+                <a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}">
+                    <button class="btn btn-danger">Login with Google</button>
+                </a>
+                {% endif %}
+            </p>
+        </div>
+     </div>
+{% endblock %}

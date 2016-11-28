@@ -1,0 +1,16 @@
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+{% for message in messages %}
+    <div class="message {% if message.to_user_id == request.user.id %} text-left {% else %} text-right {% endif %}">
+        {{ message.body }}
+    </div>
+{% endfor %}
+</div>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="message-post">
+    <form action="{% url 'chat_users' to_user_id %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-lg-8 col-md-10 col-sm-8 col-xs-8">
+            <input type="text" class="form-control" name="body">
+        </div>
+        <button class="btn btn-success col-lg-2 col-md-2 col-sm-2 col-xs-2" type="submit">Post Message</button>
+    </form>
+</div>
